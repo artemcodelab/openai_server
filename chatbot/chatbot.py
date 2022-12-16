@@ -1,22 +1,18 @@
-# from dotenv import load_dotenv
-# from os.path import join, dirname
-# from os import getenv
 import openai
 
-# dotenv_path = join(dirname(__file__), '.env')
-# load_dotenv(dotenv_path)
+API_KEY = "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"
 
-openai.api_key = "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" #getenv("API_KEY")
+openai.api_key = API_KEY
 completion = openai.Completion()
 
-def ask(prompt):
+def ask(message, engine, temperature, max_tokens, top_p, presence_penalty):
     response = openai.Completion.create(
-        engine="davinci",
-        prompt=prompt,
-        temperature=0.9,
-        max_tokens=150,
-        top_p=1,
-        presence_penalty=0.6,
+        engine=engine,
+        prompt=message,
+        temperature=temperature,
+        max_tokens=max_tokens,
+        top_p=top_p,
+        presence_penalty=presence_penalty,
         stop="\n"
     )
     return str(response.choices[0].text)
