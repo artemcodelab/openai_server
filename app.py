@@ -1,7 +1,7 @@
 from utils import utils
 from datetime import datetime
 from flask import Flask, request, jsonify
-from chatbot import chatbot
+from ai import ai
 app = Flask(__name__)
 
 @app.route("/message", methods=["POST"])
@@ -39,7 +39,7 @@ def message():
             status=400,
             errorMessage="Parameter message is required."
         )
-    answer = chatbot.ask(message, engine, temperature, max_tokens, top_p, presence_penalty)
+    answer = ai.ask(message, engine, temperature, max_tokens, top_p, presence_penalty)
     return jsonify(
         sender_message=str(message),
         answer=str(answer),
@@ -52,6 +52,11 @@ def message():
             "presence_penalty": presence_penalty
         }
     )
+
+@app.route("/engines", methods=["GET"])
+@utils.catch
+def engines():
+    return jsonify(ai.engines())
 
 if __name__ == "__main__":
     app.run(debug=True)

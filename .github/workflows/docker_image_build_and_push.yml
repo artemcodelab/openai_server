@@ -20,7 +20,7 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           username: artemcodelab
-          password: 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
+          password: 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
           registry: docker.pkg.github.com
           repository: artemcodelab/openai_server/openai_server
           tag_with_ref: true
