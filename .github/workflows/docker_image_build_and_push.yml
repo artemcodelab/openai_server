@@ -19,7 +19,7 @@ jobs:
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
-          username: ${{ github.actor }}
+          username: artemcodelab
           password: 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
           registry: docker.pkg.github.com
           repository: artemcodelab/openai_server/openai_server
